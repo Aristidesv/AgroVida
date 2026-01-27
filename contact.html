@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Contacto - AgroVida</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2d5016 0%, #1a3a0a 100%);
+            color: #333;
+        }
+
+        /* Navegação */
+        nav {
+            background: rgba(45, 80, 22, 0.95);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #7cb342;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2d5016 0%, #558b2f 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        /* Seções */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.0rem;
+            color: #ffffff;
+            margin-bottom: 3rem;
+            text-align: center;
+            border-bottom: 3px solid #7cb342;
+            padding-bottom: 1rem;
+        }
+
+        /* Cards de Equipa */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Avatar Circular */
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            border: 5px solid #7cb342;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .avatar.status::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            background: #7cb342;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .team-card h3 {
+            color: #2d5016;
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cargo {
+            color: #7cb342;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .descricao {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #f5f5f5;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .social-icon:hover {
+            background: #7cb342;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #7cb342 0%, #558b2f 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: transform 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .contact-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Formulário de Contacto */
+        .contact-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            color: #2d5016;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            border-left: 4px solid #7cb342;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #558b2f;
+            background: #f9f9f9;
+        }
+
+        .form-group textarea {
+            grid-column: 1 / -1;
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            grid-column: 1 / -1;
+            padding: 1rem;
+            background: linear-gradient(135deg, #7cb342 0%, #558b2f 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.02);
+        }
+
+        /* Info Cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-top: 4px solid #7cb342;
+        }
+
+        .info-card h4 {
+            color: #2d5016;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .info-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(45, 80, 22, 0.95);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .avatar {
+                width: 120px;
+                height: 120px;
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+             <li><a href="dex.html">Início</a></li>
+            <li><a href="dex.html#objetivo">Objetivo</a></li>
+            <li><a href="negocio.html">Modelo de negocio</a></li>
+            <li><a href="contact.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Nossa Equipa</h1>
+        <p>Conheça os responsáveis por transformar a agricultura em Moçambique</p>
+    </div>
+
+    <!-- Secção de Equipa -->
+    <section id="equipa">
+        <h2>Membros da Equipa</h2>
+        <div class="team-grid">
+            <!-- Membro 1 -->
+            <div class="team-card">
+                <div class="avatar status">
+                    <i class="fas fa-user-tie"></i>
+                <img src="IMG_20260127_143234-01.jpeg" alt="Austin"></img>
+                </div>
+                <h3>Austin Ndakaziya</h3>
+                <p class="cargo">Fundador & CEO</p>
+                <p class="descricao"> Finalista do curso de contabilidade e auditoria na Universidade católica de Moçambique.
+Responsavel por: logísticas e distribuições, Gerenciamento de operações e recursos, gerenciamento de crises, tomada de decisões, representante da empresa.</p>
+                <div class="social-icons">
+                   <a href="    " target="_blank" class="social-icon">
+                    <i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.facebook.com/austin.junior.739?mibextid=rS40aB7S9Ucbxw6v" target="_blank" class="social-icon">
+                    <i class="fab fa-facebook"></i></a>
+
+                    <a href="https://www.instagram.com/austin_syrus4?igsh=YzljYTk1ODg3Zg==" target="_blank" class="social-icon">
+                    <i class="fab fa-instagram"></i></a>
+
+                    <a href="https://wa.me/853288767" target="_blank" class="social-icon">
+                    <i class="fab fa-whatsapp"></i></a>
+                </div>
+                <button class="contact-btn" onclick="scrollTo('contacto')">Contactar</button>
+            </div>
+
+            <!-- Membro 2 -->
+            <div class="team-card">
+                <div class="avatar status">
+                <img src="IMG_1192.JPEG" alt="Aristides Vundo">
+                </div>
+                <h3>Aristides Vundo</h3>
+                <p class="cargo">Desenvolvedor & Designer</p>
+                <p class="descricao">Desenvolvedor & Designer apaixonado por inovação. Combina habilidades técnicas com sensibilidade visual para criar soluções de impacto. Responsável pelo desenvolvimento full-stack, design de interfaces e otimização da experiência do usuário na Agrovida.</p>
+                <div class="social-icons">
+                   <a href="https://www.linkedin.com/in/aristides-vundo-6b5817242?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="social-icon">
+                     <i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.facebook.com/share/14TkSiAFjde/?mibextid=wwXIfr" target="_blank" class="social-icon">
+                    <i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/iam_teddy_vundo_oficial?igsh=aTVhNWhmNnV3MG05&utm_source=qr" target="_blank" class="social-icon">
+                    <i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/258874236142" target="_blank" class="social-icon">
+                    <i class="fab fa-whatsapp"></i></a>
+                    <a href="aristidesvundo.vercel.app" target="_blank" class="social-icon">
+                    <i class="fa fa-user-tie"></i></a>
+                </div>
+                <button class="contact-btn" onclick="scrollTo('contacto')">Contactar</button>
+            </div>
+            <!-- Membro 3 -->
+            <div class="team-card">
+                <div class="avatar status">
+                <img src="IMG.jpeg" alt="Vanilssa"> 
+                </div>
+                <h3>Vanilssa Fernandes </h3>
+                <p class="cargo">Fundadora & CTO</p>
+                <p class="descricao">Responsavel por: Desenvolvimento estratégico de tecnologias, tomada de decisões técnicas, gerenciamento de equipes tecnológicas, controle do tráfego de tecnologias.</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com" target="_blank" class="social-icon">
+                    <i class="fab fa-facebook"></i></a>
+                    <a href="https://wa.me/258866068698" target="_blank" class="social-icon">
+                    <i class="fab fa-whatsapp"></i></a>
+                </div>
+                <button class="contact-btn" onclick="scrollTo('contacto')">Contactar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secção de Contacto -->
+    <section id="contacto">
+        <h2>Formulário de Contacto</h2>
+        <div class="contact-section">
+            <form onsubmit="handleSubmit(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo *</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="+258 84 XXX XXXX">
+                    </div>
+                    <div class="form-group">
+                        <label for="assunto">Assunto *</label>
+                        <select id="assunto" name="assunto" required>
+                            <option value="">Seleciona um assunto...</option>
+                            <option value="parceria">Parceria</option>
+                            <option value="suporte">Suporte Técnico</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="emprego">Oportunidade de Emprego</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem *</label>
+                        <textarea id="mensagem" name="mensagem" placeholder="Escreve a tua mensagem aqui..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn"><i class="fas fa-envelope"></i> Enviar Mensagem</button>
+                </div>
+            </form>
+
+            <!-- Info Cards -->
+           <div class="info-grid">
+    <div class="info-card">
+        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+        <h4>Email</h4>
+        <p><a href="mailto:Austin@agrovida.com" style="color: #7cb342; text-decoration: none;">Austin@agrovida.com</a></p>
+    </div>
+    <div class="info-card">
+        <div class="info-icon"><i class="fab fa-whatsapp"></i></div>
+        <h4>WhatsApp</h4>
+        <p><a href="https://wa.me/853288767" style="color: #7cb342; text-decoration: none;">+258 84 328 8767</a></p>
+    </div>
+    <div class="info-card">
+        <div class="info-icon"><i class="fas fa-map-pin"></i></div>
+        <h4>Localização</h4>
+        <p>Chimoio, Manica, Moçambique</p>
+    </div>
+</div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 AgroVida - Plataforma Nacional de Comércio Agrícola</p>
+        <p>Transformando a Agricultura, Conectando Moçambique</p>
+    </footer>
+
+    <script>
+        function scrollTo(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const nome = document.getElementById('nome').value;
+            alert(`Obrigado ${nome}! A sua mensagem foi enviada com sucesso. Entraremos em contacto em breve.`);
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>
