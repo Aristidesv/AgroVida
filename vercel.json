@@ -1,15 +1,8 @@
 {
-  "buildCommand": "",
-  "outputDirectory": ".",
-  "cleanUrls": true,
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*\\..*)",
-      "dest": "/$1"
-    },
-    {
-      "src": "/",
-      "dest": "/dex.html"
+      "source": "/(.*)",
+      "destination": "/dex.html"
     }
   ]
 }
