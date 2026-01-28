@@ -1,6 +1,4 @@
 {
-  "version": 2,
-  "public": true,
   "buildCommand": "",
   "outputDirectory": ".",
   "cleanUrls": true,
@@ -10,7 +8,7 @@
       "dest": "/$1"
     },
     {
-      "src": "/(.*)",
+      "src": "/",
       "dest": "/dex.html"
     }
   ]
