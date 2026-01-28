@@ -1,8 +1,14 @@
 {
+  "version": 2,
+  "public": true,
   "buildCommand": "",
   "outputDirectory": ".",
   "cleanUrls": true,
   "routes": [
+    {
+      "src": "/(.*\\..*)",
+      "dest": "/$1"
+    },
     {
       "src": "/(.*)",
       "dest": "/dex.html"
